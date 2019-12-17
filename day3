@@ -36,16 +36,25 @@ for i in range(0, len(wire2_path)):
     wire2_pos.append(newx)
     wire2_pos.append(newy)
 
-vertspan = []
-horispan = []
+wire1_vertspan = []
+wire1_horispan = []
+wire2_vertspan = []
+wire2_horispan = []
 
+for i in range(0, len(wire1_path)):
+    if wire1_path[i][0] == "U" or wire1_path[i][0] == "D":
+        wire1_vertspan.append(range(wire1_pos[i*2+1], wire1_pos[i*2+3]+1))
+for i in range(0, len(wire1_path)):
+    if wire1_path[i][0] == "L" or wire1_path[i][0] == "R":
+        wire1_horispan.append(range(wire1_pos[i*2], wire1_pos[i*2+2]+1))
 for i in range(0, len(wire2_path)):
     if wire2_path[i][0] == "U" or wire2_path[i][0] == "D":
-        vertspan.append(range(wire2_pos[i*2+1], wire2_pos[i*2+3]+1))
+        wire2_vertspan.append(range(wire2_pos[i*2+1], wire2_pos[i*2+3]+1))
 for i in range(0, len(wire2_path)):
     if wire2_path[i][0] == "L" or wire2_path[i][0] == "R":
-        horispan.append(range(wire2_pos[i*2], wire2_pos[i*2+2]+1))
+        wire2_horispan.append(range(wire2_pos[i*2], wire2_pos[i*2+2]+1))
 
+print(wire1_vertspan, '\n', wire1_horispan, '\n', wire2_vertspan, '\n', wire2_horispan)
 
 """ plt.plot(wire1_pos[1::2], wire1_pos[::2], 'b-')
 plt.plot(wire2_pos[1::2], wire2_pos[::2], 'r-')
@@ -54,17 +63,8 @@ plt.ylabel('y pos')
 plt.xlabel('x pos')
 plt.show() """
 
-
-""" print(vertspan, "\n\n\n\n", horispan)
-
-intersect = []
-
-for i in range(0, len(wire1_path)):
-    if wire1_path[i][0] == "R" or wire1_path[i][0] == "L":
-        for j in range(wire1_pos[i*2], wire1_pos[i*2+2]+1):
-            for k in range(0, len(vertspan)):
-                for l in vertspan[k]:
-                    if j == k:
-                        intersect.append(j)
-                        intersect.append(wire1_pos[i*2+1]) """
+for i in range(0, len(wire1_vertspan)):
+    for j in range(0, len(wire2_horispan)):
+        if wire1_vertspan[i].start in wire2_horispan[j]
+            print('Found an intersection at', i, j)
                             
