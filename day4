@@ -1,0 +1,24 @@
+pass_list = []
+for password in range(264793, 803935 + 1):
+    chk_grt, chk_equal, repeats = False, False, []
+    digits = [int(char) for char in str(password)]
+    pairs = [[digits[i], digits[i + 1]] for i in range(len(digits) - 1)]
+    for pair in pairs: 
+        if pair[0] > pair[1]:
+            chk_grt = False
+            break
+        else:
+            chk_grt = True
+    for pair in pairs:
+        if pair[0] == pair[1] and pair[0]:
+            repeats.append(pair[0])
+
+    if len(repeats) > 0:
+        for repeat in repeats:
+            if repeats.count(repeat) == 1:
+                chk_equal = True
+        
+    if chk_grt == True and chk_equal == True:
+        pass_list.append(password)
+        print(password)
+print('Part 2:', len(pass_list))
